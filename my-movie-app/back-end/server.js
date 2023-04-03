@@ -11,5 +11,5 @@ app.use(express.json());
 app.use('/api/movies', moviesRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

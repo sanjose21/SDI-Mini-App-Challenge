@@ -1,6 +1,13 @@
+import express from 'express';
+
+const app = express();
+const port = 3001;
+
 const movies = [];
 
-const getMovies = (req, res) => {
+app.use(express.json());
+
+app.get('/movies', (req, res) => {
     const filteredMovies = movies.filter((movie) => {
         if (req.query.filter === 'watched') {
             return movie.watched;
@@ -12,9 +19,9 @@ const getMovies = (req, res) => {
     });
 
     res.json(filteredMovies);
-};
+});
 
-const createMovie = (req, res) => {
+app.post('/movies', (req, res) => {
     const movie = {
         id: Date.now(),
         title: req.body.title,
@@ -24,9 +31,9 @@ const createMovie = (req, res) => {
 
     movies.push(movie);
     res.json(movie);
-};
+});
 
-const deleteMovie = (req, res) => {
+app.delete('/movies/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = movies.findIndex((movie) => movie.id === id);
 
@@ -36,10 +43,8 @@ const deleteMovie = (req, res) => {
     } else {
         res.sendStatus(404);
     }
-};
+});
 
-module.exports = {
-    getMovies,
-    createMovie,
-    deleteMovie
-};
+app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+});
