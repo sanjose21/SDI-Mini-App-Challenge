@@ -1,25 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../db';
+import knex from '../db';
 
-class Movie extends Model { }
+const Movie = () => knex('movies');
 
-Movie.init({
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    year: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    watched: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    }
-}, {
-    sequelize,
-    modelName: 'movie'
-});
-
-module.exports = Movie;
+export default Movie;
