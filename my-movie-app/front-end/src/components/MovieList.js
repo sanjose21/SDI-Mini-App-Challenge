@@ -7,6 +7,7 @@ const MovieList = ({ movies, onDeleteMovie }) => {
       {movies.map((movie, index) => (
         <Movie key={index} movie={movie} onDeleteMovie={onDeleteMovie} />
       ))}
+      <button type="button" onClick={() => onDeleteMovie(movie.id)}>Delete</button>
     </div>
   );
 };

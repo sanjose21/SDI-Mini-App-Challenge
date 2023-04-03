@@ -24,6 +24,7 @@ const SearchBar = ({ onSearchResults }) => {
         placeholder="Search for a movie..."
       />
       <button type="submit">Search</button>
+      <button type="button" onClick={() => onAddMovie(selectedMovie)}>Add Movie</button>
     </form>
   );
 };
